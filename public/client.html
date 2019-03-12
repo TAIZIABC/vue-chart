@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        h3{
+            text-align: center;
+            line-height: 40px;
+            font-size: 35px;
+            margin-top: 30px;
+            color: blue;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        .usernameWrap{
+            width: 650px;
+            height: 60px;
+            margin: 200px auto;
+        }
+        .usernameWrap input{
+            width: 500px;
+            height: 30px;
+            padding: 5px 12px;
+            border-radius: 15px; 
+            border: 1px solid red;
+        }
+        .usernameWrap span{
+            display: inline-block;
+            width: 70px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 12px;
+            color: #fff;
+            background-color: red;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        header {
+            width: 100%;
+            height: 40px;
+            color: #ffffff;
+            text-align: center;
+            background-color: #000000;
+            padding: 0 20px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+
+        header .left {
+            width: 250px;
+        }
+
+        header .left span {
+            margin-right: 10px;
+        }
+
+        header .content {
+            flex: 1;
+        }
+
+        header .right {
+            width: 90px;
+            display: flex;
+            align-items: center;
+        }
+
+        div.container {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        div.container .left-menu {
+            width: 200px;
+            height: 400px;
+            border-radius: 12px;
+            background-color: #ccc;
+            margin-right: 40px;
+            padding: 10px;
+        }
+
+        div.container .left-menu h4 {
+            line-height: 40px;
+            text-align: center;
+            color: #cc9a9a;
+        }
+
+        div.container .left-menu ul {
+            width: 100%;
+            height: 100%;
+        }
+        div.container .left-menu ul li {
+            width: 100%;
+            line-height: 35px;
+            border-bottom: 1px solid #ffffff;
+            color: blue;
+            padding: 0 12px;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        div.container .left-menu ul li img{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        div.container .panel {
+            width: 950px;
+            height: 500px;
+            background-color: rgb(221, 159, 159);
+            border-radius: 16px;
+            padding: 15px 30px;
+            margin-bottom: 60px;
+            overflow: auto;
+        }
+        div.container .panel li {
+            width: 100%;
+            min-height: 35px;
+            display: flex;
+            text-align: center;
+        }
+
+        div.container .panel li.right {
+            justify-content: flex-end;
+        }
+
+        div.container .panel li.info div {
+            max-width: 400px;
+            line-height: 30px;
+            border-radius: 12px;
+            padding: 0 12px;
+            background-color: rgb(78, 126, 189);
+            text-align: center;
+            margin: auto;
+        }
+
+        div.container .panel li .user {
+            display: flex;
+            width: 80px;
+            align-items: center;
+        }
+
+        div.container .panel li img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        div.container .panel li .content {
+            background-color: #bdec52;
+            max-width: 350px;
+            word-break: break-all;
+            padding: 8px 12px;
+            border-radius: 12px;
+            line-height: 20px;
+            box-shadow: 0 0 2px #000;
+            position: relative;
+            display: inline-block;
+            margin: 20px;
+        }
+
+        div.container .panel li.left .content .angle {
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            margin-top: -8px;
+            width: 0;
+            height: 0;
+            border-right: 8px solid #bdec52;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        div.container .panel li.right .content .angle {
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            margin-top: -8px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid #bdec52;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+        div.container .msgWrap{
+            position: fixed;
+            left: 370px;
+            bottom: 10px;
+            width: 800px;
+            height: 40px;
+            z-index: 222;
+
+        }
+        div.container .msgWrap input{
+            width: 600px;
+            height: 40px;
+            border-radius: 15px;
+            background-color: #ccc;
+            border: none;   
+            padding: 0 12px;
+        }
+        input:focus{
+            outline: none;
+        }
+        div.container .msgWrap .more{
+            display: inline-block;
+            width: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            box-shadow: 0 0 2px rgb(53, 46, 46);
+            background-color: #ccc;
+            color: rgb(160, 27, 27);
+            cursor: pointer;
+            position: relative;
+        }
+        div.container .msgWrap .more ul{
+            width: 280px;
+            height: 280px;
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            grid-template-rows: repeat(5,1fr);
+            background-color: rgb(235, 210, 210);
+            border-radius: 15px; 
+            position: absolute;
+            left: -5px;
+            top: -310px;
+        }
+        div.container .msgWrap .more ul .angle2{
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 10px solid rgb(235, 210, 210);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            position: absolute;
+            left: 15px;
+            bottom: -10px;
+        }
+        div.container .msgWrap .sendBtn{
+            display: inline-block;
+            width: 80px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 15px;
+            cursor: pointer;
+            background: red;
+            color: #fff;
+        }
+    </style>
+
+    <script src="https://cdn.bootcss.com/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+        <div v-if="!flag">
+            <h3>vue实时聊天室</h3>
+            <div class="usernameWrap">
+                    <input type="text" placeholder="请输入用户名" v-model="username" @keyup.enter="login">
+                    <span @click="login">确认</span>
+            </div>
+        </div>
+        <div v-else>
+            <header>
+                <div class="left">
+                    <span>用户名：{{username}}</span>
+                    <span>当前用户数: {{onlineUser.length}}</span>
+                </div>
+                <div class="content"></div>
+                <div class="right">
+                    <img :src="user?user.avatar:''" alt="" style="width: 30px;height: 30px;border-radius: 50%;">
+                    &nbsp;|&nbsp; <a href="javascript:;" @click="logout">退出</a>
+                </div>
+            </header>
+            <div class="container">
+                <div class="left-menu">
+                    <h4>在线用户</h4>
+                    <ul>
+                        <li v-for="item in onlineUser">
+                            <img :src="item.avatar">
+                            &nbsp;&nbsp;<span>{{item.username}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="panel" ref='contentWrap'>
+                    <li :class="classArr[item.type-1]" v-for="item in infoList">
+                        <template v-if="item.type==1">
+                                <div class="user">
+                                        <img :src="item.user.avatar" alt="">&nbsp;
+                                        <span>{{item.user.username}}</span>
+                                    </div>
+                                    <div class="content">
+                                        <span class="angle"></span>
+                                       {{ item.content }}
+                                    </div>
+                        </template>
+                        <template v-else-if="item.type==2">
+                                <div class="content">
+                                        <span class="angle"></span>
+                                        {{ item.content }}
+                                    </div>
+                                    <div class="user">
+                                        <span>{{item.user.username}} </span>&nbsp;
+                                        <img :src="item.user.avatar" alt="">&nbsp;
+                                    </div>
+                        </template>
+                        <template v-else>
+                                <div>{{ item.content }}</div>
+                        </template>
+                    </li>
+                </ul>
+                
+                <div class="msgWrap">
+                        <div class="more" @click="toggleEmojiTab">+
+                            <ul v-show="emojiFlag">
+                                <li v-for="item in emojis" @click="addEmoji(item)">{{item}}</li>
+                                <span class="angle2"></span>
+                            </ul>
+                        </div>
+                        <input type="text" v-model='content' @keydown.enter="send">
+                        <span class="sendBtn" @click="send">发送</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+     // 用户头像
+    var avatars = ['https://upload.jianshu.io/users/upload_avatars/12953191/af584f34-50cd-4dd5-b7b2-10637d7c2dd0?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96',
+        'https://upload.jianshu.io/users/upload_avatars/3891526/01d331e2db71?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp',
+        'https://upload.jianshu.io/users/upload_avatars/9553744/bc303577-0913-41be-a305-1975ffd19112.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96',
+        'https://upload.jianshu.io/users/upload_avatars/14944998/55493aa4-8da7-4f94-be34-7e20d78d769e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp',
+        'https://upload.jianshu.io/users/upload_avatars/4905899/be337cd9-fe49-4372-a9be-49400dd61ebe.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48',
+        'https://upload.jianshu.io/users/upload_avatars/1838387/20b76ff3f678?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48',
+        'https://upload.jianshu.io/users/upload_avatars/1552225/c358b707-f650-4cf2-9c20-4d7097a7970c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48',
+        'https://upload.jianshu.io/users/upload_avatars/313937/17de4ee48a5a.png?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48',
+        'https://upload.jianshu.io/users/upload_avatars/1552225/c358b707-f650-4cf2-9c20-4d7097a7970c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240',
+        'https://upload.jianshu.io/users/upload_avatars/1838387/20b76ff3f678?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48'
+    ];
+    // 字体表情
+    var Emojis = ['😀','😬','😁','😂','😃','😄','🤣','😅','😆','😉','😊','🙃','😋','😌','😍','😘','😗','🤪','😜','😎','🤓','🧐','🤗','😏','😐','😒','🤔','🤫','😠','😔','😪','😨']          
+        new Vue({
+            el: '#root',
+            data: {
+                username: '',
+                content: '',
+                user: null,
+                onlineUser: [],
+                emojis: Emojis,
+                flag: false,
+                emojiFlag: false,
+                websock: null,
+                classArr: ['left','right','info'],
+                infoList: [
+                    // {type: 1,user: {username: 'taizi',avatar: 'https://upload.jianshu.io/users/upload_avatars/14944998/55493aa4-8da7-4f94-be34-7e20d78d769e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp'},content: '的时间不固定撒。'},
+                    // {type: 1,user: {username: 'green',avatar: 'https://upload.jianshu.io/users/upload_avatars/14944998/55493aa4-8da7-4f94-be34-7e20d78d769e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp'},content: '可接受的'},
+                    // {type: 1,user: {username: 'taizi',avatar: 'https://upload.jianshu.io/users/upload_avatars/14944998/55493aa4-8da7-4f94-be34-7e20d78d769e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp'},content: '发动反对广泛大概'},
+                    // {type: 3,user: {username: 'dsfsa',avatar: 'https://upload.jianshu.io/users/upload_avatars/14944998/55493aa4-8da7-4f94-be34-7e20d78d769e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp'},content: 'tazi加入了聊天室'},
+                    // {type: 1,user: {username: 'taizi',avatar: 'https://upload.jianshu.io/users/upload_avatars/14944998/55493aa4-8da7-4f94-be34-7e20d78d769e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp'},content: '萨格法国'},
+                    // {type: 2,user: {username: 'taizi',avatar: 'https://upload.jianshu.io/users/upload_avatars/14944998/55493aa4-8da7-4f94-be34-7e20d78d769e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp'},content: '地方都是'},
+                    // {type: 1,user: {username: 'taizi',avatar: 'https://upload.jianshu.io/users/upload_avatars/14944998/55493aa4-8da7-4f94-be34-7e20d78d769e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp'},content: '股份上市的方式'}
+                ]
+            },
+            methods: {
+                initWebSocket() {
+                    const wsuri = 'ws://172.22.64.174:3000';
+                    this.websock = io.connect(wsuri);
+                    this.websock.on('login', this.wslogin);
+                    this.websock.on('message',this.wsmessage);
+                    this.websock.on('logout',this.wslogout);
+                },
+                login() {
+                    if(this.username.length>8){
+                        alert('用户名不能太长！');
+                        return false;
+                    }
+                    this.flag = true;
+                    this.initWebSocket();
+                    var obj = {
+                        userid: (Math.random() * 10).toString(16).slice(2),
+                        username: this.username,
+                        avatar: avatars[parseInt(Math.random()*10)]
+                    }
+                    this.user = obj;
+                    this.websock.emit('login', obj);
+                },
+                logout(){
+                    this.flag = false;
+                    this.username = "";
+                    this.websock.disconnect();
+                },
+                addEmoji(em){
+                    this.content += em;
+                },
+                toggleEmojiTab(){
+                    this.emojiFlag = !this.emojiFlag;
+                },
+                send(){
+                    if(this.content==''){
+                        return false;
+                    }
+                    var data = {type: 1,user: this.user,content: this.content};
+                    this.infoList.push({type: 2,user: this.user,content: this.content});
+                    this.websock.emit('message',data);
+                    this.content = '';
+                    // 屏幕滚动到最底部
+                    this.$nextTick(()=>this.scrollTo());
+                },
+                wslogin(data) {
+                    this.onlineUser = data.onlineUser;
+                    this.infoList.push({type: 3,user: data.user,content: `${data.user.username}加入聊天室！`});
+                    this.$nextTick(()=>this.scrollTo());
+                },
+                wsmessage(data){
+                    this.infoList.push(data);
+                    this.$nextTick(()=>this.scrollTo());
+                },
+                wslogout(data){
+                    this.onlineUser = data.onlineUser;
+                    this.infoList.push({type: 3,user: data.user,content: `${data.user.username}离开了聊天室！`});
+                    this.$nextTick(()=>this.scrollTo());
+                },
+                scrollTo(){
+                    var contentWrap = this.$refs.contentWrap;
+                    var lastLi = contentWrap.querySelector('li:last-child');
+                    lastLi.scrollIntoView();
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
